@@ -1,0 +1,32 @@
+{
+  "name": "kasra-db",
+  "version": "1.0.0",
+  "description": "Implements DB connections and provides common DB models",
+  "main": "index.js",
+  "readmeFilename": "readme.md",
+  "_id": "kasra-db@1.0.0",
+  "_resolved": "git+ssh://git@kasra-deploy:menapost/kasra-db.git",
+  "_from": "kasra-db@git+ssh://git@kasra-deploy:menapost/kasra-db.git",
+  "keywords": [
+    "db"
+  ],
+  "scripts": {
+    "lint": "jshint .",
+    "validate": "",
+    "test": ""
+  },
+  "dependencies": {
+    "lodash": "3.6.0",
+    "pg": "4.3.0",
+    "mongodb": "1.4.35",
+    "underscore.string": "2.4.0"
+  },
+  "devDependencies": {
+    "precommit-hook": "latest"
+  },
+  "author": "Tamas Geschitz",
+  "license": "private",
+  "engines": {
+    "node": "0.10.33"
+  }
+}
