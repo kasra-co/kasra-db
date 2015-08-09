@@ -5,8 +5,8 @@
   "main": "index.js",
   "readmeFilename": "readme.md",
   "_id": "kasra-db@1.0.0",
-  "_resolved": "git+ssh://git@kasra-deploy:menapost/kasra-db.git",
-  "_from": "kasra-db@git+ssh://git@kasra-deploy:menapost/kasra-db.git",
+  "_resolved": "git+ssh://git@github.com:kasra-co/kasra-db.git",
+  "_from": "kasra-db@git+ssh://git@github.com:kasra-co/kasra-db.git",
   "keywords": [
     "db"
   ],
