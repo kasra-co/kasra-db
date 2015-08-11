@@ -19,6 +19,7 @@
     "lodash": "3.6.0",
     "pg": "4.3.0",
     "mongodb": "1.4.35",
+    "memcached": "2.1.0",
     "underscore.string": "2.4.0"
   },
   "devDependencies": {
@@ -28,5 +29,10 @@
   "license": "private",
   "engines": {
     "node": "0.10.33"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }

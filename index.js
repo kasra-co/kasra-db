@@ -4,7 +4,7 @@ module.exports = {
 	init: function(options,appConfig,callback) {
 
 		var connection = null;
-		var allowedDBs = ['mongo','pg'];
+		var allowedDBs = ['mongo','pg','memcached'];
 
 		if(allowedDBs.indexOf(options.db.type) === -1) {
 			return callback(['Invalid db: '+options.db.type]);
