@@ -1,27 +1,43 @@
 'use strict';
 
 var url = require('url');
+var async = require('async');
 
 module.exports = {
 	init: function(options,appConfig,callback) {
 
 		var connection = null;
 		var allowedDBs = ['mongo','pg','memcached','redis'];
+		var connections = {};
 
-		if(allowedDBs.indexOf(options.db.type) === -1) {
-			return callback(['Invalid db: '+options.db.type]);
-		}
+		async.eachSeries(options.db, function(db,cb) {
 
-		connection = require( './lib/'+options.db.type+'-connect' )(options.db.testdb,appConfig)
-		.connect(function(err,dbconn,dbinfo) {
-
-			if(err) {
-				return callback(['Could not connect to %s %s',options.db.type,err]);
+			if(allowedDBs.indexOf(db.type) === -1) {
+				return cb(['Invalid db: '+db.type]);
 			}
 
-			callback(null,dbconn,url.format(dbinfo));
+			connection = require( './lib/'+db.type+'-connect' )(db.testdb,appConfig)
+			.connect(function(err,dbconn,dbinfo) {
+
+				if(err) {
+					return callback(['Could not connect to %s %s',db.type,err]);
+				}
+
+				connections[db.type] = {connection: dbconn, connstr: url.format(dbinfo)};
+				cb(null);
+
+
+			});
+
+		}, function(err) {
+			if(err) {
+				callback(err);
+			} else {
+				callback(null,connections);
+			}
 
 		});
+
 	}
 };
 
