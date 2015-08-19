@@ -7,7 +7,7 @@ module.exports = {
 	init: function(options,appConfig,callback) {
 
 		var connection = null;
-		var allowedDBs = ['mongo','pg','memcached','redis'];
+		var allowedDBs = ['mongo','pg','memcached','redis','beanstalkd'];
 		var connections = {};
 
 		async.eachSeries(options.db, function(db,cb) {
