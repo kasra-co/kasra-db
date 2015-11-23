@@ -16,7 +16,7 @@ module.exports = {
 				return cb(['Invalid db: '+db.type]);
 			}
 
-			connection = require( './lib/'+db.type+'-connect' )(db.testdb,appConfig)
+			connection = require( './lib/'+db.type+'-connect' )(db.testdb,appConfig,options.logger)
 			.connect(function(err,dbconn,dbinfo) {
 
 				if(err) {
@@ -24,8 +24,10 @@ module.exports = {
 				}
 
 				connections[db.type] = {connection: dbconn, connstr: url.format(dbinfo)};
-				cb(null);
 
+				if(!dbconn.connection.reconnected) {
+					cb(null);
+				}
 
 			});
 
@@ -40,10 +42,3 @@ module.exports = {
 
 	}
 };
-
-
-
-
-
-
-
